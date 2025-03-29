@@ -231,9 +231,9 @@ app_license = "mit"
 # Authentication and authorization
 # --------------------------------
 
-# auth_hooks = [
-# 	"block_administrator.auth.validate"
-# ]
+auth_hooks = [
+	"block_administrator.auth.validate"
+]
 
 # Automatically update python controller files with type annotations for this app.
 # export_python_type_annotations = True
