@@ -43,7 +43,7 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"System Settings" : "public/js/system_settings.js"}
+doctype_js = {"System Settings": "public/js/system_settings.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -231,9 +231,7 @@ doctype_js = {"System Settings" : "public/js/system_settings.js"}
 # Authentication and authorization
 # --------------------------------
 
-auth_hooks = [
-	"block_administrator.auth.validate"
-]
+auth_hooks = ["block_administrator.auth.validate"]
 
 # Automatically update python controller files with type annotations for this app.
 # export_python_type_annotations = True
@@ -241,4 +239,3 @@ auth_hooks = [
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
