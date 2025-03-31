@@ -17,6 +17,8 @@ repos:
       - id: check-json
       - id: check-toml
       - id: check-yaml
+      - id: end-of-file-fixer
+      - id: check-added-large-files
       - id: debug-statements
         exclude: ^block_administrator/tests/classes/context_managers\.py$
 
