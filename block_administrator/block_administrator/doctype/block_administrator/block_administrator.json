@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-31 22:28:12.490569",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "app_settings_tab",
+  "block_administrator_apps_settings_section",
+  "block_administrator_login"
+ ],
+ "fields": [
+  {
+   "fieldname": "block_administrator_apps_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Block Administrator App's Settings"
+  },
+  {
+   "default": "0",
+   "description": "Blocks the inbuilt frappe's Administrator account from email-password login",
+   "fieldname": "block_administrator_login",
+   "fieldtype": "Check",
+   "label": "Block Administrator Login"
+  },
+  {
+   "fieldname": "app_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "App Settings"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-03-31 22:30:35.240983",
+ "modified_by": "Administrator",
+ "module": "Block Administrator",
+ "name": "Block Administrator",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
