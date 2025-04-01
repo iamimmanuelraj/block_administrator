@@ -56,18 +56,3 @@ This app is built on top of the [Frappe Framework](https://frappeframework.com),
 
 - The [Frappe Team](https://frappe.io/team) for developing and maintaining the framework
 - The [Frappe Community](https://discuss.frappe.io) for their continued support
-
-### How to Contribute
-
-We welcome contributions! Here's how you can help:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-improvement`)
-3. Make your changes
-4. Commit your changes (`git commit -am 'Add some feature'`)
-5. Push to the branch (`git push origin feature/amazing-improvement`) 
-6. Create a new Pull Request
-
-## License
-
-MIT
