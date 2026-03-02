@@ -80,9 +80,9 @@ repos:
         always_run: true
 
   - repo: https://github.com/semgrep/pre-commit
-    rev: "v1.116.0"
+    rev: "v1.153.1"
     hooks:
-      - id: semgrep-ci
+      - id: semgrep
         args:
           [
             "--config",
