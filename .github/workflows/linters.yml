@@ -23,6 +23,9 @@ jobs:
       - name: fix tar dependency in alpine container image
         run: |
           apk --no-cache add tar nodejs npm python3 git bash py3-pip
+          # npm >=11 refuses git+file:// installs (EALLOWGIT), which pre-commit
+          # needs to install its prettier hook
+          npm install -g npm@10
           npm install -g prettier
           # check python modules installed versions
           python3 -m pip freeze --local
