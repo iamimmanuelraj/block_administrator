@@ -1,7 +1,8 @@
 import frappe
-from block_administrator.install import get_custom_fields
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 from frappe.query_builder import DocType
+
+from block_administrator.install import get_custom_fields
 
 
 def execute():
