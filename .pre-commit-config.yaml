@@ -83,6 +83,7 @@ repos:
     rev: "v1.116.0"
     hooks:
       - id: semgrep-ci
+        additional_dependencies: [setuptools<82]
         args:
           [
             "--config",
