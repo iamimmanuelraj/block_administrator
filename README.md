@@ -26,7 +26,8 @@ bench --site your-site.com install-app block_administrator
 
 ## Usage
 
-Once installed, the app automatically blocks login attempts to the administrator account when email-password login method is enabled. This adds an extra layer of security to your Frappe installation.
+After installing the app, go to **System Settings → Login** and check **Block Administrator Login**
+(the setting sits right below *Disable Username/Password Login* or should be in the Advanced Tab). When enabled, the built-in Administrator account can no longer log in with an email and password. Unchecking it re-enables the login immediately. Current logged in sessions of the administrator account will not be affected by this setting.
 
 <details>
 <summary>Why block the administrator account?</summary>
