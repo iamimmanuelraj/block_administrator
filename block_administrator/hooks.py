@@ -43,7 +43,6 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"System Settings": "public/js/system_settings.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -83,7 +82,7 @@ doctype_js = {"System Settings": "public/js/system_settings.js"}
 # ------------
 
 # before_install = "block_administrator.install.before_install"
-# after_install = "block_administrator.install.after_install"
+after_install = "block_administrator.install.after_install"
 
 # Uninstallation
 # ------------
@@ -231,7 +230,9 @@ doctype_js = {"System Settings": "public/js/system_settings.js"}
 # Authentication and authorization
 # --------------------------------
 
-auth_hooks = ["block_administrator.auth.validate"]
+# Runs on every login after credentials are verified but before the session is
+# created, so a blocked login fails cleanly without leaving a session behind.
+on_login = "block_administrator.auth.validate_login"
 
 # Automatically update python controller files with type annotations for this app.
 # export_python_type_annotations = True
