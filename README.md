@@ -4,7 +4,6 @@ A security enhancement app for Frappe Framework that blocks login attempts to th
 
 ## 📋 Table of Contents
 - [Features](#features)
-- [Installation](#installation)
 - [Usage](#usage)
 - [How It Works](#how-it-works)
 - [Credits](#credits)
@@ -17,12 +16,9 @@ A security enhancement app for Frappe Framework that blocks login attempts to th
 - ✅ Simple setup with zero configuration
 - ✅ Enhanced security for email-password authentication
 
-## Installation
+## Requirements
 
-```bash
-bench get-app https://github.com/username/block_administrator
-bench --site your-site.com install-app block_administrator
-```
+This app is compatible with Frappe v16.
 
 ## Usage
 
