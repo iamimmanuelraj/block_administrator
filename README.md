@@ -1,58 +1,75 @@
 # Block Administrator 🛡️
 
-A security enhancement app for Frappe Framework that blocks login attempts to the administrator account when email-password login method is enabled.
+A security app for **Frappe v15** that blocks login to the built-in `Administrator` account when email-password login is enabled.
+
+> ⚠️ **Legacy branch.** This branch targets the original client-side implementation. The rewritten, server-side version lives on the `version-16` and `develop` branches — see [Version support](#version-support).
 
 ## 📋 Table of Contents
 - [Features](#features)
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [How It Works](#how-it-works)
+- [Version support](#version-support)
 - [Credits](#credits)
-- [Contributors](#contributors)
 - [License](#license)
 
 ## Features
-- ✅ Prevents unauthorized access to administrator account
-- ✅ Compatible with Frappe Framework
-- ✅ Simple setup with zero configuration
-- ✅ Enhanced security for email-password authentication
+- ✅ Blocks `Administrator` email/password login when enabled
+- ✅ Server-side enforcement via Frappe auth hook
+- ✅ Toggle right from **System Settings** — zero extra configuration
+- ✅ Existing Administrator sessions are never interrupted
+
+## Requirements
+- Bench with **Frappe v15**
 
 ## Installation
 
 ```bash
-bench get-app https://github.com/username/block_administrator
+bench get-app https://github.com/iamimmanuelraj/block_administrator --branch version-15
 bench --site your-site.com install-app block_administrator
 ```
 
 ## Usage
 
-Once installed, the app automatically blocks login attempts to the administrator account when email-password login method is enabled. This adds an extra layer of security to your Frappe installation.
+Once installed, open **System Settings**. The app injects a **Block Administrator Login** checkbox (right below *Disable Username/Password Login*). Check it and save — the `Administrator` account can no longer log in with an email and password. Uncheck to re-enable immediately.
 
 <details>
 <summary>Why block the administrator account?</summary>
 <br>
-The administrator account has full system access. When email-password authentication is enabled, it becomes a high-value target for brute force attacks. This app helps mitigate that risk by preventing direct login to the administrator account.
+The `Administrator` account has full system access. When email-password authentication is enabled, it becomes a prime target for brute-force attacks. This app removes that attack surface by preventing direct login to the account.
 </details>
 
 ## How It Works
 
-The app hooks into Frappe's authentication system and implements the following security logic:
+The v15 implementation has two parts:
 
-| Login Attempt | Result | Reason |
-|--------------|--------|--------|
-| Administrator account | 🚫 Blocked | Security risk |
-| Other accounts | ✅ Allowed | Normal operation |
+| Layer | Mechanism |
+|-------|-----------|
+| Client | `doctype_js` on **System Settings** injects the checkbox into the form and persists its state to the `Block Administrator` singleton DocType (`frappe.db.set_value`) |
+| Server | `auth_hooks` → `validate()`: if the session user is `Administrator` and the singleton's flag is set, login is rejected with a `PermissionError` |
 
 ```mermaid
 graph TD
-    A[Login Request] --> B{Is administrator?}
-    B -->|Yes| C[Block Access]
+    A[Login Request] --> B{is Administrator?}
     B -->|No| D[Process Normally]
+    B -->|Yes| E{Block flag set?}
+    E -->|No| D
+    E -->|Yes| F[Reject login]
 ```
+
+## Version support
+
+| Branch | Frappe | Mechanism | Status |
+|--------|--------|-----------|--------|
+| `version-15` | v15 | Injected checkbox + singleton DocType + auth hook | Legacy |
+| `version-16` | v16 | Server-side custom field + `on_login` hook | Current |
+| `develop` | v16 | Same as v16 + nightly CI | Current |
 
 ## Credits
 
-This app is built on top of the [Frappe Framework](https://frappeframework.com), an open-source, metadata-driven framework created by Frappe Technologies. Special thanks to:
+Built on the [Frappe Framework](https://frappeframework.com), the open-source, metadata-driven framework from Frappe Technologies.
 
-- The [Frappe Team](https://frappe.io/team) for developing and maintaining the framework
-- The [Frappe Community](https://discuss.frappe.io) for their continued support
+## License
+
+[GPLv3](LICENSE) — see the LICENSE file for the full text.
