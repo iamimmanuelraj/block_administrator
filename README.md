@@ -72,4 +72,4 @@ Built on the [Frappe Framework](https://frappeframework.com), the open-source, m
 
 ## License
 
-MIT
+[GPLv3](LICENSE) — see the LICENSE file for the full text.
