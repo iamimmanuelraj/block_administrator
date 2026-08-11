@@ -57,8 +57,7 @@ The `Administrator` account has full system access. When email-password authenti
 You **cannot** lock yourself out. Enabling the block is rejected unless at least one *other* enabled user holds the **System Manager** role, so a recovery path always exists.
 
 ```
-Cannot block Administrator login as no other enabled user has the
-System Manager role. You would lose all admin access.
+Cannot block Administrator login as no other enabled user has the System Manager role. You would lose all admin access.
 ```
 
 Disabling the block (or saving unrelated settings) is always allowed.
@@ -109,7 +108,11 @@ The v16 line is a full server-side rewrite of the v15 approach. No DocType, no c
 `block_administrator/tests/test_block_administrator.py` — integration tests covering:
 - `test_blocks_administrator_login_when_enabled`
 - `test_allows_administrator_login_when_disabled`
-- `test_blocks_toggling_on_without_other_system_managers`
+- `test_allows_other_users_when_enabled`
+- `test_rejects_enabling_when_no_other_users`
+- `test_rejects_enabling_when_no_other_system_manager`
+- `test_allows_enabling_when_other_system_manager_exists`
+- `test_allows_disabling_always`
 
 ```bash
 bench --site your-site.com run-tests --app block_administrator
@@ -123,7 +126,7 @@ bench --site your-site.com run-tests --app block_administrator
 | `develop` | v16 | Same + nightly CI | Current |
 | `version-15` | v15 | Injected checkbox + singleton DocType + auth hook | Legacy |
 
-> **Migrating from v15:** the v1_0_0 patch adds the custom field and the value is carried over from the old `Block Administrator` singleton — uninstall `version-15` and install `version-16` on the same site.
+> **Migrating from v15:** `version-15` / `version-16` are **branches of the same app** — do not uninstall. In bench, switch the app checkout to the `version-16` branch, then run `bench --site your-site.com migrate`. The `v1_0_0` patch creates the custom field, carries over the old `block_administrator_login` value from the `Block Administrator` singleton, and removes the orphaned Module Def left behind by the old module.
 
 ## Credits
 
